@@ -26,7 +26,7 @@ router.get('*', (req, res) => {
 //url='localhost:port/articles/{id}'
 
 app.use(async(req, res, next) => {
-    logger.trace(`Received request: Method: ${req.method} url: ${req.hostname}${req.originalUrl} User-Agent: ${req.get("user-agent")} IP: ${req.ip}`);
+    logger.trace(`Received request: Method: ${req.method} url: ${req.hostname}${req.originalUrl} User-Agent: ${req.get("user-agent")} IP: ${JSON.stringify(req.ip)}`);
     console.log("Method", req.method, "User-Agent", req.get("user-agent"));
     if (!await models.CheckPermission(req.ip)) {
         logger.warn("Server blocked request from ", req.ip, " -- too many requests");

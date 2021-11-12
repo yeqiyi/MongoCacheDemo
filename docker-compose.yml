@@ -1,14 +1,5 @@
 version: '3.8'
 services:
-  node:
-    image: "mongocachedemo"
-    depends_on:
-     - redis
-     - mongodb
-    ports:
-     - 3000:3000
-    volumes:
-     - /Users/yuki/项目/mongoCacheDemo:/app
   redis:
     image: "redis"
     ports:

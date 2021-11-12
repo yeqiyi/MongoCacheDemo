@@ -1,11 +1,11 @@
 const { MongoClient } = require('mongodb');
 const { logger } = require('./log')
-const url = 'mongodb://mongodb:27017/articles';
+const url = 'mongodb://localhost:27017/articles';
 const client = new MongoClient(url);
 const Redis = require('ioredis');
 const redisClient = new Redis({
     port: process.env.REDIS_PORT || 6379,
-    host: process.env.REDIS_HOST || 'redis',
+    host: process.env.REDIS_HOST || 'localhost',
     family: 4,
     db: 0,
 });

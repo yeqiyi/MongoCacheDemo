@@ -14,16 +14,17 @@ const MAX_ACCESS = 5 //每个IP限制访问次数
 const BLOCK_SECOND = 3600 //关小黑屋1h   
 const BLOCK_SUFFIX = '-blocked' //屏蔽后缀
 
-var dbo = null;
+
 
 client.connect((err, db) => {
     if (err) {
         process.exit(0);
     }
-    dbo = db.db('articles');
     console.log('connected to the database');
     logger.trace('Mongodb: Connected to the database');
 });
+
+var dbo = client.db('articles');
 
 redisClient.on('connect', () => {
     console.log('Redis is ready to accept connections');
@@ -50,7 +51,6 @@ function getArticle(id) {
                     if (article_data.length > 0) {
                         //写入缓存
                         redisClient.set(id, JSON.stringify(article_data));
-                        console.log('get ', redis.get(id));
                     }
                     resolve(article_data);
                 });
